@@ -118,3 +118,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+.carParametrs {
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -2%;
+  vertical-align: middle;
+}

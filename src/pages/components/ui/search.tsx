@@ -8,7 +8,7 @@ import {
 export function Search() {
   return (
     <div className="search-box flex justify-between">
-    <InputGroup className="w-60 h-12">
+    <InputGroup className="w-[243px] h-12">
     <InputGroupInput placeholder="Searching something here" />
     <InputGroupAddon>
         <SearchIcon className="text-gray-500" />
