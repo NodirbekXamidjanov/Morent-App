@@ -3,7 +3,7 @@ import type { car } from "./types";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import {
-    Button,
+  Button,
   Card,
   CardAction,
   CardContent,
@@ -24,52 +24,85 @@ export const PopularCars = () => {
     (async function () {
       try {
         const { data } = await axios.get<car[]>(
-          " http://10.30.0.54:3000/popular-cars"
+          "http://localhost:3000/popular-cars"
         );
         console.log(data);
         setCars({ cars: data });
       } catch (error) {
         if (error) console.log(error);
 
-        if (error instanceof AxiosError) return toast.error(error.message);
+        if (error instanceof AxiosError) {
+          toast.error(error.message);
+
+          return <h1>{error.message}</h1>;
+        }
       }
     })();
   }, []);
 
   return (
-    <div className="w-full pl-6 flex flex-col gap-4 bg-[#f6f7f9]" style={{fontFamily: "Plus Jakarta Sans"}}>
-        <span className="flex justify-between pr-8">
-      <h2 className=" font-semibold text-[14px] leading-[150%] tracking-[-0.02em] align-middle text-[#90A3BF]">Popular Cars</h2>
-        <p className="font-semibold text-[12px] leading-[100%] tracking-[0em] text-right align-middle text-[#3563E9]">View All</p>
-        </span>
+    <div
+      className="w-full pl-6 flex flex-col gap-4 bg-[#f6f7f9]"
+      style={{ fontFamily: "Plus Jakarta Sans" }}
+    >
+      <span className="flex justify-between pr-8">
+        <h2 className=" font-semibold text-[14px] leading-[150%] tracking-[-0.02em] align-middle text-[#90A3BF]">
+          Popular Cars
+        </h2>
+        <p className="font-semibold text-[12px] leading-[100%] tracking-[0em] text-right align-middle text-[#3563E9]">
+          View All
+        </p>
+      </span>
       <div className="overflow-x-auto  ">
-  <ul className="flex gap-4 w-max">
-    {state?.cars.map((car) => (
-      <li key={car.id}>
-        <Card className="w-60 bg-white border-none">
-          <CardHeader>
-            <CardTitle className="font-plusJakarta font-semibold text-[16px] leading-[150%] tracking-[-0.02em] align-middle">{car.model}</CardTitle>
-            <CardDescription className="font-plusJakarta font-medium text-[12px] leading-[100%] tracking-[-0.02em] align-middle text-[#90A3BF]">{car.type}</CardDescription>
-            <CardAction>{car.liked ? "❤️" : "🩶"}</CardAction>
-          </CardHeader>
-            <CardContent>
-              <img src={car.imageUrl} alt="" />
-            </CardContent>
-            <CardContent className="flex gap-4 text-[#90A3BF]">
-              <span className="flex gap-2 carParametrs"><img src="/gas-station.svg" alt="" />{car.parametrs.fuelCapacity}L</span>
-              <span className="flex gap-2 carParametrs"><img src="/Car.svg" alt="" />{car.parametrs.manual ? "Manual" : "Automated"}</span>
-              <span className="flex gap-2 carParametrs"><img src="/profile-2user.svg" alt="" />{car.parametrs.seats}</span>
-            </CardContent>
-          <CardFooter className="flex justify-between items-center gap-4">
-            <span className="font-bold text-[16px] leading-[100%] tracking-[-0.01em] align-middle">${car.rentPrice}/<span className="font-bold text-[12px] leading-[100%] tracking-[-0.01em] align-middle text-[#90A3BF]">day</span></span>
-            <Button variant={"primary"} className="px-4 py-2 font-semibold text-[12px] leading-[100%] tracking-[-0.02em] text-center align-middle">Rental Now</Button>
-          </CardFooter>
-        </Card>
-      </li>
-    ))}
-  </ul>
-</div>
-
+        <ul className="flex gap-4 w-max">
+          {state?.cars.map((car) => (
+            <li key={car.id}>
+              <Card className="w-60 bg-white border-none">
+                <CardHeader>
+                  <CardTitle className="font-plusJakarta font-semibold text-[16px] leading-[150%] tracking-[-0.02em] align-middle">
+                    {car.model}
+                  </CardTitle>
+                  <CardDescription className="font-plusJakarta font-medium text-[12px] leading-[100%] tracking-[-0.02em] align-middle text-[#90A3BF]">
+                    {car.type}
+                  </CardDescription>
+                  <CardAction>{car.liked ? "❤️" : "🩶"}</CardAction>
+                </CardHeader>
+                <CardContent>
+                  <img src={car.imageUrl} alt="" />
+                </CardContent>
+                <CardContent className="flex gap-4 text-[#90A3BF]">
+                  <span className="flex gap-2 carParametrs">
+                    <img src="/gas-station.svg" alt="" />
+                    {car.parametrs.fuelCapacity}L
+                  </span>
+                  <span className="flex gap-2 carParametrs">
+                    <img src="/Car.svg" alt="" />
+                    {car.parametrs.manual ? "Manual" : "Automated"}
+                  </span>
+                  <span className="flex gap-2 carParametrs">
+                    <img src="/profile-2user.svg" alt="" />
+                    {car.parametrs.seats}
+                  </span>
+                </CardContent>
+                <CardFooter className="flex justify-between items-center gap-4">
+                  <span className="font-bold text-[16px] leading-[100%] tracking-[-0.01em] align-middle">
+                    ${car.rentPrice}/
+                    <span className="font-bold text-[12px] leading-[100%] tracking-[-0.01em] align-middle text-[#90A3BF]">
+                      day
+                    </span>
+                  </span>
+                  <Button
+                    variant={"primary"}
+                    className="px-4 py-2 font-semibold text-[12px] leading-[100%] tracking-[-0.02em] text-center align-middle"
+                  >
+                    Rental Now
+                  </Button>
+                </CardFooter>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

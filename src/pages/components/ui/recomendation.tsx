@@ -24,14 +24,17 @@ export const Recomendation = () => {
     (async function () {
       try {
         const { data } = await axios.get<car[]>(
-          " http://10.30.0.54:3000/recomendation-cars"
+          "http://localhost:3000/recomendation-cars"
         );
         console.log(data);
         setCars({ cars: data });
       } catch (error) {
         if (error) console.log(error);
+        if (error instanceof AxiosError) {
+          toast.error(error.message);
 
-        if (error instanceof AxiosError) return toast.error(error.message);
+          return <h1>{error.message}</h1>;
+        }
       }
     })();
   }, []);
@@ -46,7 +49,7 @@ export const Recomendation = () => {
           Recomendation Cars
         </h2>
       </span>
-      <div className="">
+      <div>
         <ul className="flex flex-col gap-5 w-full">
           {state?.cars.map((car) => (
             <li key={car.id}>
@@ -98,7 +101,7 @@ export const Recomendation = () => {
             </li>
           ))}
         </ul>
-        <div className="flex outline-1 items-center justify-between ml-24 mt-14 ">
+        <div className="flex items-center justify-between ml-24 mt-14 ">
           <Button
             variant={"primary"}
             className="font-semibold text-[12px] leading-[100%] tracking-[-0.02em] text-center align-middle"
