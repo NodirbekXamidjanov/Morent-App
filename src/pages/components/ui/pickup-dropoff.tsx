@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export default function PickupDropoffSection() {
@@ -9,18 +9,18 @@ export default function PickupDropoffSection() {
   const [dropoffDate, setDropoffDate] = useState("");
   const [dropoffTime, setDropoffTime] = useState("");
 
-  const handleSearch = () => {
-    const data = {
-      pickupLocation,
-      pickupDate,
-      pickupTime,
-      dropoffLocation,
-      dropoffDate,
-      dropoffTime,
-    };
-    console.log("Search data:", data);
-    // Bu yerda search logic qo'shishingiz mumkin
-  };
+//    const handleSearch = () => {
+//     const data = {
+//       pickupLocation,
+//       pickupDate,
+//       pickupTime,
+//       dropoffLocation,
+//       dropoffDate,
+//       dropoffTime,
+//     };
+//     console.log("Search data:", data);
+//     // Bu yerda search logic qo'shishingiz mumkin
+//   };
 
   return (
     <div className="bg-white rounded-lg mt-29 md:mt-0 p-6 shadow-sm">
