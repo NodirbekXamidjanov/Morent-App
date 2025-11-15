@@ -24,7 +24,7 @@ export const Recomendation = () => {
     (async function () {
       try {
         const { data } = await axios.get<car[]>(
-          "http://192.168.100.3:3000/recomendation-cars"
+          "https://my-json-server.typicode.com/NodirbekXamidjanov/Demo-db/recomendation-cars"
         );
         console.log(data);
         setCars({ cars: data });

@@ -24,7 +24,7 @@ export const PopularCars = () => {
     (async function () {
       try {
         const { data } = await axios.get<car[]>(
-          "http://192.168.100.3:3000/popular-cars"
+          "https://my-json-server.typicode.com/NodirbekXamidjanov/Demo-db/popular-cars"
         );
         console.log(data);
         setCars({ cars: data });
