@@ -24,7 +24,7 @@ export const PopularCars = () => {
     (async function () {
       try {
         const { data } = await axios.get<car[]>(
-          "http://localhost:3000/popular-cars"
+          "http://192.168.100.3:3000/popular-cars"
         );
         console.log(data);
         setCars({ cars: data });
@@ -42,7 +42,7 @@ export const PopularCars = () => {
 
   return (
     <div
-      className="w-full pl-6 flex flex-col gap-4 bg-[#f6f7f9]"
+      className="w-full pl-6 flex flex-col gap-4 md:px-15 bg-[#f6f7f9]"
       style={{ fontFamily: "Plus Jakarta Sans" }}
     >
       <span className="flex justify-between pr-8">
@@ -54,15 +54,15 @@ export const PopularCars = () => {
         </p>
       </span>
       <div className="overflow-x-auto  ">
-        <ul className="flex gap-4 w-max">
+        <ul className="flex gap-4 md:gap-8 w-max">
           {state?.cars.map((car) => (
             <li key={car.id}>
-              <Card className="w-60 bg-white border-none">
-                <CardHeader>
-                  <CardTitle className="font-plusJakarta font-semibold text-[16px] leading-[150%] tracking-[-0.02em] align-middle">
+              <Card className="w-60 md:w-76 bg-white border-none">
+                <CardHeader className="md:pb-8">
+                  <CardTitle className="font-plusJakarta font-semibold md:font-bold text-[16px] md:text-5 leading-[150%] tracking-[-0.02em] align-middle">
                     {car.model}
                   </CardTitle>
-                  <CardDescription className="font-plusJakarta font-medium text-[12px] leading-[100%] tracking-[-0.02em] align-middle text-[#90A3BF]">
+                  <CardDescription className="font-plusJakarta font-medium md:font-bold text-[12px] md:text-4 leading-[100%] tracking-[-0.02em] align-middle text-[#90A3BF]">
                     {car.type}
                   </CardDescription>
                   <CardAction>{car.liked ? "❤️" : "🩶"}</CardAction>
@@ -70,7 +70,7 @@ export const PopularCars = () => {
                 <CardContent>
                   <img src={car.imageUrl} alt="" />
                 </CardContent>
-                <CardContent className="flex gap-4 text-[#90A3BF]">
+                <CardContent className="flex md:pt-4 gap-4 text-[#90A3BF]">
                   <span className="flex gap-2 carParametrs">
                     <img src="/gas-station.svg" alt="" />
                     {car.parametrs.fuelCapacity}L

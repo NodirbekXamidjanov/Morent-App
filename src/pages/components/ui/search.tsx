@@ -7,15 +7,15 @@ import {
   import { SearchIcon } from "lucide-react";
 export function Search() {
   return (
-    <div className="search-box flex justify-between">
-    <InputGroup className="w-[243px] h-12">
+    <div className="search-box flex justify-between absolute top-23 gap-4 md:relative md:top-0">
+    <InputGroup className="w-[243px] md:w-123 md:rounded-[70px] h-12">
     <InputGroupInput placeholder="Searching something here" />
     <InputGroupAddon>
         <SearchIcon className="text-gray-500" />
     </InputGroupAddon>
     </InputGroup>
 
-    <Button variant={"outline"} className="w-12 p-3 h-12">
+    <Button variant={"ghost"} className="w-12 md:absolute border outline-[#C3D4E966] md:right-0 p-3 md:border-none md:p-4 md:rounded-[70px] h-12">
     <img src="/Property 1=linear.png" alt="filter" />
     </Button>
 </div>

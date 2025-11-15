@@ -51,6 +51,71 @@
                 "manual": true
             },
             "rentPrice": "99.00"
+        },
+        {
+            "id": 5,
+            "model": "Koengsegg",
+            "type": "sport",
+            "liked": true,
+            "imageUrl": "https://freepngimg.com/thumb/car/2-2-car-transparent.png",
+            "parametrs": {
+                "seats": 2,
+                "fuelCapacity": 90,
+                "manual": true
+            },
+            "rentPrice": "99.00"
+        },
+        {
+            "id": 6,
+            "model": "Koengsegg",
+            "type": "sport",
+            "liked": true,
+            "imageUrl": "https://freepngimg.com/thumb/car/2-2-car-transparent.png",
+            "parametrs": {
+                "seats": 2,
+                "fuelCapacity": 90,
+                "manual": true
+            },
+            "rentPrice": "99.00"
+        },
+        {
+            "id": 7,
+            "model": "Koengsegg",
+            "type": "sport",
+            "liked": true,
+            "imageUrl": "https://freepngimg.com/thumb/car/2-2-car-transparent.png",
+            "parametrs": {
+                "seats": 2,
+                "fuelCapacity": 90,
+                "manual": true
+            },
+            "rentPrice": "99.00"
+        },
+        {
+            "id": 8,
+            "model": "Koengsegg",
+            "type": "sport",
+            "liked": true,
+            "imageUrl": "https://freepngimg.com/thumb/car/2-2-car-transparent.png",
+            "parametrs": {
+                "seats": 2,
+                "fuelCapacity": 90,
+                "manual": true
+            },
+            "rentPrice": "99.00"
+        },
+        {
+            "id": 9,
+            "model": "Koengsegg",
+            "type": "sport",
+            "liked": true,
+            "imageUrl": "https://freepngimg.com/thumb/car/2-2-car-transparent.png",
+            "parametrs": {
+                "seats": 2,
+                "fuelCapacity": 90,
+                "manual": true
+            },
+            "rentPrice": "99.00"
         }
     ],
     "recomendation-cars": [

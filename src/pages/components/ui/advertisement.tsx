@@ -1,7 +1,8 @@
 export function Advertisement() {
   return (
-    <div className="absolute z-50 top-45 px-6 sm:px-6 lg:px-8">
-      <img src="/Ads.svg" className="w-full h-auto cursor-pointer" alt="advertisement" />
+    <div className="absolute flex items-center gap-32 z-50 top-45 md:static  px-6 md:p-15">
+      <img src="/Ads 1.svg" className="w-full h-auto cursor-pointer" alt="advertisement" />
+      <img src="/Ads 2.svg" className="w-full h-auto cursor-pointer hidden md:block" alt="advertisement" />
     </div>
   );
 }
