@@ -2,7 +2,7 @@
 export const Footer = () => {
   return (
     <footer
-      className="bg-[#F6F7F9] w-full px-8 md:px-15 py-10 text-[#131313]"
+      className="w-full px-8 md:px-15 py-10 text-[#131313]"
       style={{ fontFamily: "Plus Jakarta Sans" }}
     >
       <div className="mx-auto flex flex-col gap-10">

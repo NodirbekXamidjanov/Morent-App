@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components";
+import { useNavigate } from "react-router-dom";
 
 interface PopularCarsState {
   cars: car[];
@@ -19,6 +20,7 @@ interface PopularCarsState {
 
 export const PopularCars = () => {
   const [state, setCars] = useState<PopularCarsState>({ cars: [] });
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function () {
@@ -68,7 +70,7 @@ export const PopularCars = () => {
                   <CardAction>{car.liked ? "❤️" : "🩶"}</CardAction>
                 </CardHeader>
                 <CardContent>
-                  <img src={car.imageUrl} alt="" />
+                  <img src={car.imageUrl[0]} alt="" />
                 </CardContent>
                 <CardContent className="flex md:pt-4 gap-4 text-[#90A3BF]">
                   <span className="flex gap-2 carParametrs">
@@ -94,6 +96,13 @@ export const PopularCars = () => {
                   <Button
                     variant={"primary"}
                     className="px-4 py-2 font-semibold text-[12px] leading-[100%] tracking-[-0.02em] text-center align-middle"
+                    onClick={() => {
+                      navigate(`/cars/${car.id}`);
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                    }}
                   >
                     Rental Now
                   </Button>

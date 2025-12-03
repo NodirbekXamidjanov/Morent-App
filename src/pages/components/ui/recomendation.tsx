@@ -12,13 +12,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components";
+import { useNavigate } from "react-router-dom";
 
 interface RecomendationState {
   cars: car[];
 }
+interface RecomendationProps {
+  title: string;
+  data?: car[];
+}
 
-export const Recomendation = () => {
+export const Recomendation = (props: RecomendationProps) => {
   const [state, setCars] = useState<RecomendationState>({ cars: [] });
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function () {
@@ -39,6 +45,8 @@ export const Recomendation = () => {
     })();
   }, []);
 
+  const cars = props.data ?? state.cars;
+
   return (
     <div
       className="px-6 flex flex-col gap-4 md:px-15 bg-[#f6f7f9]"
@@ -46,10 +54,10 @@ export const Recomendation = () => {
     >
       <span className="flex justify-between">
         <h2 className=" font-semibold text-[14px] leading-[150%] tracking-[-0.02em] align-middle text-[#90A3BF]">
-          Recomendation Cars
+          {props.title ? props.title : "Recomendation Car"}
         </h2>
       </span>
-      <div >
+      <div>
         <ul
           className="
     flex flex-col gap-5 w-full
@@ -58,75 +66,80 @@ export const Recomendation = () => {
     xl:grid-cols-4
   "
         >
-          {state?.cars.map((car) => (
+          {cars.map((car) => (
             <li key={car.id}>
-            <Card className="bg-white border-none">
-              <CardHeader className="md:pb-8">
-                <CardTitle className="font-plusJakarta font-semibold md:font-bold text-[16px] md:text-5 leading-[150%] tracking-[-0.02em] align-middle">
-                  {car.model}
-                </CardTitle>
-                <CardDescription className="font-plusJakarta font-medium md:font-bold text-[12px] md:text-4 leading-[100%] tracking-[-0.02em] align-middle text-[#90A3BF]">
-                  {car.type}
-                </CardDescription>
-                <CardAction>{car.liked ? "❤️" : "🩶"}</CardAction>
-              </CardHeader>
-              
-              {/* Mobile layout - flex row */}
-              <div className="flex items-center pr-4 md:hidden">
-                <CardContent>
-                  <img src={car.imageUrl} alt="" />
+              <Card className="bg-white border-none">
+                <CardHeader className="md:pb-8">
+                  <CardTitle className="font-plusJakarta font-semibold md:font-bold text-[16px] md:text-5 leading-[150%] tracking-[-0.02em] align-middle">
+                    {car.model}
+                  </CardTitle>
+                  <CardDescription className="font-plusJakarta font-medium md:font-bold text-[12px] md:text-4 leading-[100%] tracking-[-0.02em] align-middle text-[#90A3BF]">
+                    {car.type}
+                  </CardDescription>
+                  <CardAction>{car.liked ? "❤️" : "🩶"}</CardAction>
+                </CardHeader>
+
+                <div className="flex items-center pr-4 md:hidden">
+                  <CardContent>
+                    <img src={car.imageUrl[0]} alt="" />
+                  </CardContent>
+                  <CardContent className="flex flex-col gap-4 text-[#90A3BF]">
+                    <span className="flex gap-1 carParametrs">
+                      <img src="/gas-station.svg" alt="" />
+                      {car.parametrs.fuelCapacity}L
+                    </span>
+                    <span className="flex gap-1 carParametrs">
+                      <img src="/Car.svg" alt="" />
+                      {car.parametrs.manual ? "Manual" : "Automated"}
+                    </span>
+                    <span className="flex gap-1 items-center whitespace-nowrap carParametrs">
+                      <img src="/profile-2user.svg" alt="" />
+                      {car.parametrs.seats} People
+                    </span>
+                  </CardContent>
+                </div>
+
+                <CardContent className="hidden md:block">
+                  <img src={car.imageUrl[0]} alt="" />
                 </CardContent>
-                <CardContent className="flex flex-col gap-4 text-[#90A3BF]">
-                  <span className="flex gap-1 carParametrs">
+                <CardContent className="hidden md:flex md:pt-4 gap-4 text-[#90A3BF]">
+                  <span className="flex gap-2 carParametrs">
                     <img src="/gas-station.svg" alt="" />
                     {car.parametrs.fuelCapacity}L
                   </span>
-                  <span className="flex gap-1 carParametrs">
+                  <span className="flex gap-2 carParametrs">
                     <img src="/Car.svg" alt="" />
                     {car.parametrs.manual ? "Manual" : "Automated"}
                   </span>
-                  <span className="flex gap-1 items-center whitespace-nowrap carParametrs">
+                  <span className="flex gap-2 carParametrs">
                     <img src="/profile-2user.svg" alt="" />
-                    {car.parametrs.seats} People
+                    {car.parametrs.seats}
                   </span>
                 </CardContent>
-              </div>
-              
-              {/* Desktop layout - stacked */}
-              <CardContent className="hidden md:block">
-                <img src={car.imageUrl} alt="" />
-              </CardContent>
-              <CardContent className="hidden md:flex md:pt-4 gap-4 text-[#90A3BF]">
-                <span className="flex gap-2 carParametrs">
-                  <img src="/gas-station.svg" alt="" />
-                  {car.parametrs.fuelCapacity}L
-                </span>
-                <span className="flex gap-2 carParametrs">
-                  <img src="/Car.svg" alt="" />
-                  {car.parametrs.manual ? "Manual" : "Automated"}
-                </span>
-                <span className="flex gap-2 carParametrs">
-                  <img src="/profile-2user.svg" alt="" />
-                  {car.parametrs.seats}
-                </span>
-              </CardContent>
-              
-              <CardFooter className="flex justify-between items-center md:gap-4">
-                <span className="font-bold text-[16px] leading-[100%] tracking-[-0.01em] align-middle">
-                  ${car.rentPrice}/
-                  <span className="font-bold text-[12px] leading-[100%] tracking-[-0.01em] align-middle text-[#90A3BF]">
-                    day
+
+                <CardFooter className="flex justify-between items-center md:gap-4">
+                  <span className="font-bold text-[16px] leading-[100%] tracking-[-0.01em] align-middle">
+                    ${car.rentPrice}/
+                    <span className="font-bold text-[12px] leading-[100%] tracking-[-0.01em] align-middle text-[#90A3BF]">
+                      day
+                    </span>
                   </span>
-                </span>
-                <Button
-                  variant="primary"
-                  className="px-4 py-2 font-semibold text-[12px] leading-[100%] tracking-[-0.02em] text-center align-middle"
-                >
-                  Rental Now
-                </Button>
-              </CardFooter>
-            </Card>
-          </li> 
+                  <Button
+                    variant="primary"
+                    className="px-4 py-2 font-semibold text-[12px] leading-[100%] tracking-[-0.02em] text-center align-middle"
+                    onClick={() => {
+                      navigate(`/cars/${car.id}`);
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                    }}
+                  >
+                    Rental Now
+                  </Button>
+                </CardFooter>
+              </Card>
+            </li>
           ))}
         </ul>
 

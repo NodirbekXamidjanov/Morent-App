@@ -9,7 +9,23 @@ export type car = {
   model: string;
   type: string;
   liked: boolean;
-  imageUrl: string;
+  imageUrl: string[];
   parametrs: carParametrs;
-  rentPrice: string;
+  rentPrice: number;
 };
+
+export interface Filters {  
+  type: string[];
+  capacity: number[];
+  price: number; // maksimal price
+}
+
+export type review =  {
+  id: string,
+  author: string,
+  role: string,
+  avatar: string,
+  date: string,
+  rating: number,
+  text: string,
+}
